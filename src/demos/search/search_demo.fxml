@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2011 Oracle and/or its affiliates. All rights reserved.
+-->
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import demos.search.*?>
+
+<BorderPane fx:controller="demos.search.SearchDemoController" 
+            style="-fx-padding: 6 6 6 6" 
+  xmlns:fx="http://javafx.com/fxml">
+  <top>
+    <BorderPane>
+      <left>
+        <HBox spacing="6" style="-fx-padding: 0 0 6 0">
+          <children>
+            <TextField fx:id="searchTermTextField" prefColumnCount="18"
+                       onAction="#handleSearchAction"/>
+            <Button fx:id="searchButton" disable="false" 
+                    onAction="#handleSearchAction"/>
+          </children>
+        </HBox>
+      </left>
+      <right>
+        <Label fx:id="statusLabel"/>
+      </right>
+    </BorderPane>
+  </top>
+  <center>
+    <BorderPane>
+      <center>
+        <TableView fx:id="resultsTableView">
+          <fx:define>
+             <ResultCellValueFactory fx:id="resultCellValueFactory"/>
+          </fx:define>
+            <columns>
+              <ResultTableColumn 
+                  key="itemName" text="%name" prefWidth="170" 
+                  cellValueFactory="$resultCellValueFactory"/>
+              <ResultTableColumn 
+                  key="itemParentName" text="%album" prefWidth="170" 
+                  cellValueFactory="$resultCellValueFactory"/>
+              <ResultTableColumn 
+                  key="artistName" text="%artist" prefWidth="170" 
+                  cellValueFactory="$resultCellValueFactory"/>
+            </columns>
+        </TableView>
+      </center>
+      <right>
+        <VBox alignment="topCenter" spacing="6" style="-fx-padding: 0 0 0 6">
+          <children>
+            <StackPane prefWidth="120" prefHeight="120" 
+                style="-fx-border-color: #929292; -fx-border-width: 1px">
+              <children>
+                  <ImageView fx:id="artworkImageView"/>
+              </children>
+            </StackPane>
+            <Button fx:id="previewButton" text="%preview" 
+                    onAction="#handlePreviewAction"/>
+          </children>
+        </VBox>
+      </right>
+    </BorderPane>
+  </center>
+</BorderPane>
